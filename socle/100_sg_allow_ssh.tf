@@ -1,6 +1,6 @@
-resource "aws_security_group" "allow_ssh_from_any" {
+resource "aws_security_group" "sg_bastion" {
   vpc_id      = "${aws_vpc.mainVPC.id}"
-  name_prefix = "allow_ssh_from_any"
+  name_prefix = "sg_bastion"
 
   ingress {
     from_port   = 22
@@ -9,8 +9,15 @@ resource "aws_security_group" "allow_ssh_from_any" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  egress {
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    cidr_blocks = ["${aws_vpc.mainVPC.cidr_block}"]
+  }
+
   tags {
-    Name  = "${var.project_name} - allow_ssh_from_any"
+    Name  = "${var.project_name} - sg_bastion"
     Owner = "ylorenzati"
   }
 }
@@ -23,7 +30,7 @@ resource "aws_security_group" "allow_ssh_from_bastion" {
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.allow_ssh_from_any.id}"]
+    security_groups = ["${aws_security_group.sg_bastion.id}"]
   }
 
   tags {
@@ -32,9 +39,9 @@ resource "aws_security_group" "allow_ssh_from_bastion" {
   }
 }
 
-resource "aws_security_group" "allow_web_from_any" {
+resource "aws_security_group" "sg_web" {
   vpc_id      = "${aws_vpc.mainVPC.id}"
-  name_prefix = "allow_web_from_any"
+  name_prefix = "sg_web"
 
   ingress {
     from_port   = 80
@@ -43,42 +50,63 @@ resource "aws_security_group" "allow_web_from_any" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = -1
+    cidr_blocks = ["${aws_vpc.mainVPC.cidr_block}"]
+  }
+
   tags {
-    Name  = "${var.project_name} -allow_web_from_any"
+    Name  = "${var.project_name} - sg_web"
     Owner = "ylorenzati"
   }
 }
 
-resource "aws_security_group" "allow_appli_from_web" {
+resource "aws_security_group" "sg_app" {
   vpc_id      = "${aws_vpc.mainVPC.id}"
-  name_prefix = "allow_appli_from_web"
+  name_prefix = "sg_sgbd"
 
   ingress {
     from_port       = 8080
     to_port         = 8080
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.allow_web_from_any.id}"]
+    security_groups = ["${aws_security_group.sg_web.id}"]
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = -1
+    cidr_blocks = ["${aws_vpc.mainVPC.cidr_block}"]
   }
 
   tags {
-    Name  = "${var.project_name} - allow_appli_from_web"
+    Name  = "${var.project_name} - sg_app"
     Owner = "ylorenzati"
   }
 }
 
-resource "aws_security_group" "allow_sgbd_from_appli" {
+resource "aws_security_group" "sg_sgbd" {
   vpc_id      = "${aws_vpc.mainVPC.id}"
-  name_prefix = "allow_sgbd_from_appli"
+  name_prefix = "sg_sgbd"
 
   ingress {
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.allow_appli_from_web.id}"]
+    security_groups = ["${aws_security_group.sg_app.id}"]
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = -1
+    cidr_blocks = ["${aws_vpc.mainVPC.cidr_block}"]
   }
 
   tags {
-    Name  = "${var.project_name} - allow_sgbd_from_appli"
+    Name  = "${var.project_name} - sg_sgbd"
     Owner = "ylorenzati"
   }
 }
