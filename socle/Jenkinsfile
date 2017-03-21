@@ -1,7 +1,9 @@
 node{
-    // This step should not normally be used in your script. Consult the inline help for details.
-    withDockerContainer('hashicorp/terraform:0.9.1') {
+    stage "deploy" {
+        sh "let's start"
 
-        sh 'plan'
+        withDockerContainer('hashicorp/terraform:0.9.1') {
+            sh 'plan'
+        }
     }
 }
