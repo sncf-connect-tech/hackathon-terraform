@@ -13,3 +13,4 @@ exec 2>&1
 mkdir -p /home/admsys/.ssh
 useradd admsys
 cp -r /home/ubuntu/.ssh/* /home/admsys/.ssh/
+chmod 644 /home/admsys/.ssh/authorized_keys
