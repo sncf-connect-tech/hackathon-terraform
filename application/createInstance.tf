@@ -1,11 +1,15 @@
-resource "aws_instance" "myvm" {
+resource "aws_instance" "apache" {
   ami           = "ami-0d729a60"
   instance_type = "t2.micro"
-
+  key_name = "AnsibleDeployementKey"
+  count=2
   tags {
-	Name="myvm"
+	Name="apache"
 	Owner="prevellin"
   }
 }
 
+output "ip" {
+value = ["${aws_instance.apache.*.public_ip}"]
+}
 
