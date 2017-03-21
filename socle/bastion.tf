@@ -8,7 +8,7 @@ data "aws_ami" "latest_amlinux" {
 
    filter {
 	name = "name"
-	values = ["CentOS7.*"]
+	values = ["ADOPC-UBUNTU-16-*"]
    }
 }
 
