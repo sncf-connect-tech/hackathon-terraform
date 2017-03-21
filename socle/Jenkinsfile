@@ -15,10 +15,10 @@ node{
             }
 
             stage("apply"){
-                timeout(time: 1, unit: 'HOURS') {
-                    input 'Apply?'
+                //timeout(time: 1, unit: 'HOURS') {
+                //    input 'Apply?'
                     sh 'cd socle; terraform apply'
-                }
+                //}
             }
 
             stage("report"){
