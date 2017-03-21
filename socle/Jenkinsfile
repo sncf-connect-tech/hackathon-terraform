@@ -10,7 +10,7 @@ node{
                   sh 'cd socle; terraform init'
             }
 
-            stage("deploy"){
+            stage("plan"){
                  sh 'cd socle; terraform plan'
             }
 
