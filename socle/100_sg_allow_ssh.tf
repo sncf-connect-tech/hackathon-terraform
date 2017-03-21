@@ -50,6 +50,13 @@ resource "aws_security_group" "sg_web" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = -1
+    cidr_blocks = ["${aws_vpc.mainVPC.cidr_block}"]
+  }
+
   tags {
     Name  = "${var.project_name} - sg_web"
     Owner = "ylorenzati"
@@ -67,6 +74,13 @@ resource "aws_security_group" "sg_app" {
     security_groups = ["${aws_security_group.sg_web.id}"]
   }
 
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = -1
+    cidr_blocks = ["${aws_vpc.mainVPC.cidr_block}"]
+  }
+
   tags {
     Name  = "${var.project_name} - sg_app"
     Owner = "ylorenzati"
@@ -82,6 +96,13 @@ resource "aws_security_group" "sg_sgbd" {
     to_port         = 3306
     protocol        = "tcp"
     security_groups = ["${aws_security_group.sg_app.id}"]
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = -1
+    cidr_blocks = ["${aws_vpc.mainVPC.cidr_block}"]
   }
 
   tags {
