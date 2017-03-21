@@ -1,4 +1,4 @@
-resource "aws_security_group" "allow_ssh_from_any" {
+resource "aws_security_group" "sg_bastion" {
   vpc_id      = "${aws_vpc.mainVPC.id}"
   name_prefix = "allow_ssh_from_any"
 
@@ -23,14 +23,7 @@ resource "aws_security_group" "allow_ssh_from_bastion" {
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.allow_ssh_from_any.id}"]
-  }
-
-  ingress {
-    from_port       = 8
-    to_port         = 0
-    protocol        = "icmp"
-    security_groups = ["${aws_security_group.allow_ssh_from_any.id}"]
+    security_groups = ["${aws_security_group.sg_bastion.id}"]
   }
 
   tags {
