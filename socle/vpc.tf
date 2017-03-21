@@ -3,7 +3,7 @@ resource "aws_vpc" "mainVPC" {
   instance_tenancy = "dedicated"
 
   tags {
-    Name = "VPC-Hackaton"
+    Name  = "VPC-Hackaton"
     Owner = "nikko"
   }
 }

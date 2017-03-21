@@ -7,17 +7,17 @@ resource "aws_route_table" "internet_route" {
   }
 
   tags {
-    Name = "Routage public"
+    Name  = "Routage public"
     Owner = "Daniel Polombo"
   }
 }
 
 resource "aws_route_table_association" "routing_sas_securite" {
   route_table_id = "${aws_route_table.internet_route.id}"
-  subnet_id = "${aws_subnet.sas_securite.id}"
+  subnet_id      = "${aws_subnet.sas_securite.id}"
 }
 
 resource "aws_route_table_association" "routing_zone_transverse" {
   route_table_id = "${aws_route_table.internet_route.id}"
-  subnet_id = "${aws_subnet.zone_transverse.id}"
+  subnet_id      = "${aws_subnet.zone_transverse.id}"
 }
