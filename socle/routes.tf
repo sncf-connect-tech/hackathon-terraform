@@ -16,3 +16,8 @@ resource "aws_route_table_association" "public_routing" {
   route_table_id = "${aws_route_table.internet_route.id}"
   subnet_id = "${aws_subnet.sas_securite.id}"
 }
+
+resource "aws_route_table_association" "public_routing" {
+  route_table_id = "${aws_route_table.internet_route.id}"
+  subnet_id = "${aws_subnet.zone_transverse.id}"
+}
