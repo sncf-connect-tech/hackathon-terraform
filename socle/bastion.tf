@@ -1,19 +1,19 @@
-data "aws_ami" "latest_amlinux" {
-	most_recent = true
+#data "aws_ami" "latest_amlinux" {
+	#most_recent = true
 
-   filter {
-	name = "virtualization-type"
-	values = ["hvm"]
-   }
+    #filter {
+	#name = "virtualization-type"
+	#values = ["hvm"]
+   #}
 
-   filter {
-	name = "name"
-	values = ["ADOPC-UBUNTU-16-*"]
-   }
-}
+   #filter {
+	#name = "name"
+	#values = ["ADOPC-UBUNTU-16-*"]
+   #}
+#}
 
 resource "aws_instance" "bastion" {
-	ami = "${data.aws_ami.latest_amlinux.id}"
+	ami = "ami-405f7226"
 	associate_public_ip_address = "1"
 	instance_type = "t2.micro"	
 	subnet_id = "${aws_subnet.zone_transverse.id}"
