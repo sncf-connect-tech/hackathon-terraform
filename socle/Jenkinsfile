@@ -1,9 +1,12 @@
-node{
-    stage("deploy"){
-        sh "let's start"
+pipeline {
+    agent any
+    stages {
+        stage "deploy" {
+            sh "let's start"
 
-        withDockerContainer('hashicorp/terraform:0.9.1') {
-            sh 'plan'
+            withDockerContainer('hashicorp/terraform:0.9.1') {
+                sh 'plan'
+            }
         }
     }
 }
