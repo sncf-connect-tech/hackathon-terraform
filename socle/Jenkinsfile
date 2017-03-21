@@ -12,14 +12,13 @@ node{
 
             stage("deploy"){
                  sh 'cd socle; terraform plan'
-                 shouldApply input 'Apply?'
-
-                 if(shouldApply == true){
-                    echo 'terraform apply'
-                 }
-
+                 shouldApply = input 'Apply?'
             }
-
+            if(shouldApply == true){
+                stage("apply"){
+                     echo 'terraform apply'
+                }
+            }
             stage("report"){
               sh 'cd socle;terraform show'
             }
