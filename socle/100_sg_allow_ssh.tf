@@ -24,7 +24,6 @@ resource "aws_security_group" "allow_ssh_from_bastion" {
     to_port     = 22
     protocol    = "tcp"
     security_groups = ["${aws_security_group.allow_ssh_from_any.id}"]
-
   }
 
   tags {
@@ -53,17 +52,35 @@ resource "aws_security_group" "allow_web_from_any" {
 
 resource "aws_security_group" "allow_appli_from_web" {
   vpc_id      = "${aws_vpc.mainVPC.id}"
-  name_prefix = "allow_web_from_any"
+  name_prefix = "allow_appli_from_web"
 
   ingress {
-    from_port   = 80
-    to_port     = 80
+    from_port   = 8080
+    to_port     = 8080
     protocol    = "tcp"
     security_groups = ["${aws_security_group.allow_web_from_any.id}"]
   }
 
   tags {
     Name = "${var.project_name} - allow_appli_from_web"
+    Owner = "ylorenzati"
+  }
+}
+
+
+resource "aws_security_group" "allow_sgbd_from_appli" {
+  vpc_id      = "${aws_vpc.mainVPC.id}"
+  name_prefix = "allow_sgbd_from_appli"
+
+  ingress {
+    from_port   = 27127
+    to_port     = 27127
+    protocol    = "tcp"
+    security_groups = ["${aws_security_group.allow_appli_from_web.id}"]
+  }
+
+  tags {
+    Name = "${var.project_name} - allow_sgbd_from_appli"
     Owner = "ylorenzati"
   }
 }
