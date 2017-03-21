@@ -73,8 +73,8 @@ resource "aws_security_group" "allow_sgbd_from_appli" {
   name_prefix = "allow_sgbd_from_appli"
 
   ingress {
-    from_port   = 27127
-    to_port     = 27127
+    from_port   = 3306
+    to_port     = 3306
     protocol    = "tcp"
     security_groups = ["${aws_security_group.allow_appli_from_web.id}"]
   }
