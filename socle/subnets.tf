@@ -1,6 +1,6 @@
 resource "aws_subnet" "sas_securite" {
   vpc_id = "${aws_vpc.mainVPC.id}"
-  cidr_block = "10.0.1.0/22"
+  cidr_block = "10.0.1.0/24"
 
   tags {
     Name = "Subnet sas securite"
@@ -10,7 +10,7 @@ resource "aws_subnet" "sas_securite" {
 
 resource "aws_subnet" "zone_appli" {
   vpc_id = "${aws_vpc.mainVPC.id}"
-  cidr_block = "10.0.5.0/20"
+  cidr_block = "10.0.2.0/24"
 
   tags {
     Name = "Subnet zone applicative"
@@ -20,7 +20,7 @@ resource "aws_subnet" "zone_appli" {
 
 resource "aws_subnet" "zone_sgbd" {
   vpc_id = "${aws_vpc.mainVPC.id}"
-  cidr_block = "10.0.21.0/22"
+  cidr_block = "10.0.3.0/24"
 
   tags {
     Name = "Subnet zone SGBD"
