@@ -1,0 +1,4 @@
+// This step should not normally be used in your script. Consult the inline help for details.
+withDockerContainer('tauffredou/terraform:0.9.1') {
+    sh 'echo hello'
+}
