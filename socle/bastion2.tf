@@ -1,5 +1,5 @@
 data "template_file" "bootstrap2" {
-  template = "${file("files/bootstrap.sh")}"
+  template = "${file("files/bootstrap2.sh")}"
 }
 
 resource "aws_instance" "bastion2" {
