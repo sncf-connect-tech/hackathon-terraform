@@ -13,7 +13,7 @@ resource "aws_security_group" "sg_bastion" {
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.allow_ssh_from_bastion.id}"]
+    cidr_blocks = ["${aws_vpc.mainVPC.cidr_block}"]
   }
 
   tags {
