@@ -26,6 +26,13 @@ resource "aws_security_group" "allow_ssh_from_bastion" {
     security_groups = ["${aws_security_group.allow_ssh_from_any.id}"]
   }
 
+  ingress {
+    from_port       = 8
+    to_port         = 0
+    protocol        = "icmp"
+    security_groups = ["${aws_security_group.allow_ssh_from_any.id}"]
+  }
+
   tags {
     Name  = "${var.project_name} - allow_ssh_from_bastion"
     Owner = "ylorenzati"
