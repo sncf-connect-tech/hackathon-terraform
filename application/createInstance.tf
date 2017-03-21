@@ -33,12 +33,12 @@ data "template_file" "inventory" {
 
     vars {
         list_apache_node = "${join("\n",formatlist("%s ansible_ssh_user=ubuntu",aws_instance.apache.*.public_ip))}"
-        list_tomcat_node = "${join("\n",aws_instance.tomcat.*.public_ip)}"
+        list_tomcat_node = "${join("\n",formatlist("%s ansible_ssh_user=ubuntu",aws_instance.tomcat.*.public_ip))}"
     }
 }
 
 resource "null_resource" "inventories" {
   provisioner "local-exec" {
-      command = "echo '${data.template_file.inventory.rendered}' > ansible/tmp"
+      command = "echo '${data.template_file.inventory.rendered}' > ansible/hosts.ansible"
   }
 }
