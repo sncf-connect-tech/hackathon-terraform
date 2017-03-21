@@ -1,11 +1,21 @@
-pipeline {
-    agent any
-    stages {
-        stage("deploy"){
-            sh "let's start"
+node{
+      docker.image('hashicorp/terraform:0.9.1').inside {
 
-            withDockerContainer('hashicorp/terraform:0.9.1') {
-                sh 'plan'
+         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'AWS',
+                            usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]){
+
+            git 'https://github.com/voyages-sncf-technologies/hackathon-terraform.git'
+
+            stage("init"){
+                  sh 'cd socle; terraform init'
+            }
+
+            stage("deploy"){
+                  sh 'cd socle; terraform plan'
+            }
+
+            stage("report"){
+              sh 'cd socle;terraform show'
             }
         }
     }
