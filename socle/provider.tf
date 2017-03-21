@@ -6,9 +6,9 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-west-1"
+  region = "${var.region}"
 }
 
-resource "aws_key_pair" "tfdevoxx" {
+resource "aws_key_pair" "hackathon" {
   public_key = "${file("ssh/idrsa.pub")}"
 }
