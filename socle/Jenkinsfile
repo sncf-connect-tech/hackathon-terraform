@@ -11,9 +11,7 @@ node{
             }
 
             stage("deploy"){
-                wrap([$class: 'AnsiColorBuildWrapper']) {
-                  sh 'cd socle; terraform plan'
-                 }
+                 sh 'cd socle; terraform plan'
                  shouldApply input 'Apply?'
 
                  if(shouldApply == true){
