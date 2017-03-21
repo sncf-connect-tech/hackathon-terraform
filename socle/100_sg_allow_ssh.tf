@@ -1,6 +1,6 @@
 resource "aws_security_group" "sg_bastion" {
   vpc_id      = "${aws_vpc.mainVPC.id}"
-  name_prefix = "allow_ssh_from_any"
+  name_prefix = "sg_bastion"
 
   ingress {
     from_port   = 22
@@ -10,7 +10,7 @@ resource "aws_security_group" "sg_bastion" {
   }
 
   tags {
-    Name  = "${var.project_name} - allow_ssh_from_any"
+    Name  = "${var.project_name} - sg_bastion"
     Owner = "ylorenzati"
   }
 }
