@@ -17,7 +17,7 @@ node{
             stage("apply"){
                 shouldApply = input 'Apply?'
                 if(shouldApply == true){
-                     echo 'terraform apply'
+                     sh 'cd socle; terraform apply'
                 }
             }
 
