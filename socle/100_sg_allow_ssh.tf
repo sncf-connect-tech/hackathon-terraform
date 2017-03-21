@@ -9,6 +9,13 @@ resource "aws_security_group" "sg_bastion" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  egress {
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    security_groups = ["${aws_security_group.allow_ssh_from_bastion.id}"]
+  }
+
   tags {
     Name  = "${var.project_name} - sg_bastion"
     Owner = "ylorenzati"
