@@ -12,12 +12,12 @@ resource "aws_route_table" "internet_route" {
   }
 }
 
-resource "aws_route_table_association" "public_routing" {
+resource "aws_route_table_association" "routing_sas_securite" {
   route_table_id = "${aws_route_table.internet_route.id}"
   subnet_id = "${aws_subnet.sas_securite.id}"
 }
 
-resource "aws_route_table_association" "public_routing" {
+resource "aws_route_table_association" "routing_zone_transverse" {
   route_table_id = "${aws_route_table.internet_route.id}"
   subnet_id = "${aws_subnet.zone_transverse.id}"
 }
