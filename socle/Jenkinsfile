@@ -15,9 +15,9 @@ node{
             }
 
             stage("apply"){
-                shouldApply = input 'Apply?'
-                if(shouldApply == true){
-                     sh 'cd socle; terraform apply'
+                timeout(time: 1, unit: 'HOURS') {
+                    input 'Apply?'
+                    sh 'cd socle; terraform apply'
                 }
             }
 
