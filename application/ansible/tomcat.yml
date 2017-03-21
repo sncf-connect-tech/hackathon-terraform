@@ -1,0 +1,7 @@
+---
+- hosts: tomcat
+  sudo: yes
+  tasks:
+    - name: install tomcat
+      apt: name=tomcat7 update_cache=yes state=latest
+

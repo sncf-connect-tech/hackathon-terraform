@@ -1,0 +1,8 @@
+[apache]
+54.83.149.214 ansible_ssh_user=ubuntu
+54.89.94.173 ansible_ssh_user=ubuntu
+
+[tomcat]
+54.83.149.214 ansible_ssh_user=ubuntu
+54.89.94.173 ansible_ssh_user=ubuntu
+
