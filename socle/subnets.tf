@@ -27,3 +27,13 @@ resource "aws_subnet" "zone_sgbd" {
     Owner = "Daniel Polombo"
   }
 }
+
+resource "aws_subnet" "zone_transverse" {
+  vpc_id = "${aws_vpc.mainVPC.id}"
+  cidr_block = "${cidrsubnet(aws_vpc.mainVPC.cidr_block, 8, 4)}"
+
+  tags {
+    Name = "Subnet zone transverse"
+    Owner = "Daniel Polombo"
+  }
+}
