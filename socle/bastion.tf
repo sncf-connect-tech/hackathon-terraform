@@ -18,7 +18,7 @@ resource "aws_instance" "bastion" {
 	instance_type = "t2.micro"	
 	subnet_id = "${aws_subnet.zone_transverse.id}"
 	vpc_security_group_ids = ["${aws_security_group.allow_ssh_from_any.id}"]
-	public_key = "${aws_key_pair.hackathon}"
+	key_name = "${aws_key_pair.hackathon.key_name}"
 	tags {
     		Name = "bastion"
     		Owner = "nikko"
