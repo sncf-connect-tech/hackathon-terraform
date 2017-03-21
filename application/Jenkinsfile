@@ -1,0 +1,30 @@
+node{
+      docker.image('hashicorp/terraform:0.9.1').inside {
+
+         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'AWS',
+                            usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]){
+
+            git 'https://github.com/voyages-sncf-technologies/hackathon-terraform.git'
+
+            stage("init"){
+                  sh 'cd socle; terraform init'
+            }
+
+            stage("plan"){
+                 sh 'cd socle; terraform plan'
+            }
+
+            stage("apply"){
+                //timeout(time: 1, unit: 'HOURS') {
+                //    input 'Apply?'
+                    sh 'cd socle; terraform apply'
+                //}
+            }
+
+            stage("report"){
+              sh 'cd socle;terraform show'
+            }
+        }
+    }
+}
+
