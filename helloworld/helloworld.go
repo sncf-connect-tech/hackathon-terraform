@@ -15,17 +15,13 @@ type Page struct {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	filename := r.URL.Path[1:]
-	fmt.Println(fmt.Sprintf("%s", filename))
 	hostname, _ := os.Hostname()
-	t, _ := template.ParseFiles("index.html")
+	t, _ := template.ParseFiles(fmt.Sprintf("%s/index.html", path))
 	page := &Page{
 		Title:    "hackathon 2017",
 		Hostname: hostname,
 	}
 	t.Execute(w, page)
-	//fmt.Fprintf(w, "Hackathon 2017.\n\nnHello: %s!\nhostname %s", r.URL.Path[1:], hostname)
-
 }
 
 func ping(w http.ResponseWriter, r *http.Request) {
@@ -38,28 +34,25 @@ func readfile(w http.ResponseWriter, path string) {
 	fmt.Printf("read file %s on %s\n", path, w)
 }
 
-func voyages(w http.ResponseWriter, r *http.Request) {
-	filename := r.URL.Path[1:]
-	fmt.Println(fmt.Sprintf("%s", filename))
-	readfile(w, fmt.Sprintf("%s", filename))
-}
-
 func images(w http.ResponseWriter, r *http.Request) {
 	filename := r.URL.Path[1:]
-	fmt.Println(fmt.Sprintf("%s", filename))
-	readfile(w, fmt.Sprintf("%s", filename))
+	fmt.Println(fmt.Sprintf("%s/%s", path, filename))
+	readfile(w, fmt.Sprintf("%s/%s", path, filename))
 }
 
+var (
+	path = "./"
+)
+
 func main() {
-	port := "8080"
 	if (len(os.Args) > 1) {
-		port = os.Args[1]
+		path = os.Args[1]
 	}
-	fmt.Printf("listen to %s\n", port)
+	fmt.Printf("listen to 8080, static path are in %s\n", path)
 	http.HandleFunc("/ping", ping)
 	http.HandleFunc("/img/", images)
 	http.HandleFunc("/", index)
 	//http.HandleFunc("/", index)
-	http.ListenAndServe(fmt.Sprintf(":%s", port), nil)
+	http.ListenAndServe(":8080", nil)
 	fmt.Println("server started")
 }
