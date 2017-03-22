@@ -16,6 +16,13 @@ resource "aws_security_group" "sg_bastion" {
     cidr_blocks = ["${aws_vpc.mainVPC.cidr_block}"]
   }
 
+  egress {
+    from_port       = 443
+    to_port         = 443
+    protocol        = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  
   tags {
     Name  = "${var.project_name} - sg_bastion"
     Owner = "ylorenzati"
