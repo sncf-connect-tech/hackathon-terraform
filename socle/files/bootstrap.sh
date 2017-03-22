@@ -18,7 +18,7 @@ cp -r /home/ubuntu/.profile /home/admsys/
 chmod 644 /home/admsys/.ssh/authorized_keys
 apt-get -q update
 apt-get -qy install python
-apt-get -y squid 
+apt-get -y install squid 
 /bin/sed -i 's,acl Safe_ports port 21,#acl Safe_ports port 21,g' /etc/squid/squid.conf
 /bin/sed -i 's,acl Safe_ports port 70,#acl Safe_ports port 70,g' /etc/squid/squid.conf
 /bin/sed -i 's,acl Safe_ports port 210,#acl Safe_ports port 210,g' /etc/squid/squid.conf
