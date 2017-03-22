@@ -41,3 +41,7 @@ resource "aws_subnet" "zone_transverse" {
 output "socle_subnet_zone_appli_id" {
   value = "${aws_subnet.zone_appli.id}"
 }
+
+output "socle_subnet_sas_securite_id" {
+  value = "${aws_subnet.sas_securite.id}"
+}
