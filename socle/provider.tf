@@ -12,3 +12,7 @@ provider "aws" {
 resource "aws_key_pair" "hackathon" {
   public_key = "${file("ssh/idrsa.pub")}"
 }
+
+output "socle_key_name" {
+  value ="${aws_key_pair.hackathon.key_name}"
+}

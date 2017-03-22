@@ -37,3 +37,7 @@ resource "aws_subnet" "zone_transverse" {
     Owner = "Daniel Polombo"
   }
 }
+
+output "socle_subnet_zone_appli_id" {
+  value = "${aws_subnet.zone_appli.id}"
+}

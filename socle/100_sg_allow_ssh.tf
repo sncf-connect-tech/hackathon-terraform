@@ -46,6 +46,10 @@ resource "aws_security_group" "allow_ssh_from_bastion" {
   }
 }
 
+output "socle_security_group_allow_ssh_from_bastion_id" {
+  value = "${aws_security_group.allow_ssh_from_bastion.id}"
+}
+
 resource "aws_security_group" "sg_web" {
   vpc_id      = "${aws_vpc.mainVPC.id}"
   name_prefix = "sg_web"
@@ -70,6 +74,11 @@ resource "aws_security_group" "sg_web" {
   }
 }
 
+output "socle_security_group_sg_web_id" {
+  value = "${aws_security_group.sg_web.id}"
+}
+
+
 resource "aws_security_group" "sg_app" {
   vpc_id      = "${aws_vpc.mainVPC.id}"
   name_prefix = "sg_sgbd"
@@ -93,6 +102,11 @@ resource "aws_security_group" "sg_app" {
     Owner = "ylorenzati"
   }
 }
+
+output "socle_security_group_sg_app_id" {
+  value = "${aws_security_group.sg_app.id}"
+}
+
 
 resource "aws_security_group" "sg_sgbd" {
   vpc_id      = "${aws_vpc.mainVPC.id}"
