@@ -11,7 +11,7 @@ node{
             }
 
             stage("package"){
-                  sh 'pwd; cd helloworld;  tar czvf helloworld.tar.gz index.html img/hackathon.png helloworld hackathon.service'
+                  sh 'pwd; cd helloworld;  tar czvf helloworld.tar.gz index.html img/hackathon.png img/chaton.png helloworld hackathon.service'
             }
 
             stage("archive"){
