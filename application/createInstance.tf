@@ -1,5 +1,5 @@
 resource "aws_instance" "apache" {
-  ami = "${data.aws_ami.latest_ubuntu.id}"
+  ami = "ami-f9e151ef"
 
   #ami           = "ami-f4cc1de2"
   instance_type     = "m3.medium"
