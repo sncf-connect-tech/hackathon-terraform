@@ -1,5 +1,5 @@
 resource "aws_instance" "bastion2" {
-  ami                         = "ami-405f7226" 
+  ami                         = "${data.aws_ami.latest_ubuntu}"
   associate_public_ip_address = true
   instance_type               = "m3.medium"
   subnet_id                   = "${aws_subnet.zone_transverse.id}"
