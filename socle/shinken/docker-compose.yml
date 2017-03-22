@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  shinken:
+    image: vsct/shinken
+    build: ./custom
+    ports:
+     - "80:80"
+    volumes:
+     - ./custom_configs:/etc/shinken/custom_configs
+     - ./logs:/var/log/shinken
