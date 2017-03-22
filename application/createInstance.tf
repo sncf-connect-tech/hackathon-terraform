@@ -7,7 +7,7 @@ resource "aws_instance" "apache" {
     Name = "apache"
     Owner = "prevellin"
   }
-  subnet_id = "${data.terraform_remote_state.socle.socle_subnet_zone_appli_id}"
+  subnet_id = "${data.terraform_remote_state.socle.socle_subnet_sas_securite_id}"
   vpc_security_group_ids = [
     "${data.terraform_remote_state.socle.socle_security_group_allow_ssh_from_bastion_id}",
     "${data.terraform_remote_state.socle.socle_security_group_sg_web_id}"]
