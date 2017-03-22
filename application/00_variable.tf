@@ -3,5 +3,5 @@ variable "region" {
 }
 
 variable ansiblePublicSsh {
-default="file://ansible.public.ssh"
+  default = "file://ansible.public.ssh"
 }

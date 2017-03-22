@@ -10,40 +10,40 @@ resource "aws_security_group" "sg_bastion" {
   }
 
   egress {
-    from_port       = 22
-    to_port         = 22
-    protocol        = "tcp"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
     cidr_blocks = ["${aws_vpc.mainVPC.cidr_block}"]
   }
 
   egress {
-    from_port       = 443
-    to_port         = 443
-    protocol        = "tcp"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
   egress {
-    from_port       = 80
-    to_port         = 80
-    protocol        = "tcp"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
   ingress {
     from_port   = 3128
     to_port     = 3128
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
   tags {
     Name  = "${var.project_name} - sg_bastion"
     Owner = "ylorenzati"
@@ -83,9 +83,9 @@ resource "aws_security_group" "sg_web" {
   }
 
   egress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = -1
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
     cidr_blocks = ["${aws_vpc.mainVPC.cidr_block}"]
   }
 
@@ -99,7 +99,6 @@ output "socle_security_group_sg_web_id" {
   value = "${aws_security_group.sg_web.id}"
 }
 
-
 resource "aws_security_group" "sg_app" {
   vpc_id      = "${aws_vpc.mainVPC.id}"
   name_prefix = "sg_sgbd"
@@ -112,9 +111,9 @@ resource "aws_security_group" "sg_app" {
   }
 
   egress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = -1
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
     cidr_blocks = ["${aws_vpc.mainVPC.cidr_block}"]
   }
 
@@ -128,7 +127,6 @@ output "socle_security_group_sg_app_id" {
   value = "${aws_security_group.sg_app.id}"
 }
 
-
 resource "aws_security_group" "sg_sgbd" {
   vpc_id      = "${aws_vpc.mainVPC.id}"
   name_prefix = "sg_sgbd"
@@ -141,9 +139,9 @@ resource "aws_security_group" "sg_sgbd" {
   }
 
   egress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = -1
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
     cidr_blocks = ["${aws_vpc.mainVPC.cidr_block}"]
   }
 

@@ -7,6 +7,7 @@ terraform {
 
 data "terraform_remote_state" "socle" {
   backend = "consul"
+
   config {
     address = "34.248.11.152:8500"
     path    = "hackathon/socle"
@@ -14,6 +15,6 @@ data "terraform_remote_state" "socle" {
 }
 
 provider "aws" {
-  region = "${var.region}"
+  region  = "${var.region}"
   profile = "default"
 }

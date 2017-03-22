@@ -1,5 +1,5 @@
 data "aws_ami" "latest_ubuntu" {
-  most_recent      = true
+  most_recent = true
 
   filter {
     name   = "virtualization-type"
@@ -10,4 +10,4 @@ data "aws_ami" "latest_ubuntu" {
     name   = "name"
     values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20170221"]
   }
-} 
+}

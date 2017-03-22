@@ -14,5 +14,5 @@ resource "aws_key_pair" "hackathon" {
 }
 
 output "socle_key_name" {
-  value ="${aws_key_pair.hackathon.key_name}"
+  value = "${aws_key_pair.hackathon.key_name}"
 }

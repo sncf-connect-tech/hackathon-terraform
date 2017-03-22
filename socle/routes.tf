@@ -28,7 +28,6 @@ resource "aws_eip" "nat" {
   vpc = "true"
 }
 
-
 /* Nat gateway for private resource */
 resource "aws_nat_gateway" "gw" {
   allocation_id = "${aws_eip.nat.id}"

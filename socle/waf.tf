@@ -2,8 +2,9 @@ resource "aws_waf_ipset" "IP_req_web" {
   name = "tfIPSet"
 
   ip_set_descriptors {
-    type  = "IPV4"
-	#IP des requetes web
+    type = "IPV4"
+
+    #IP des requetes web
     value = "90.34.217.106/32"
   }
 }
