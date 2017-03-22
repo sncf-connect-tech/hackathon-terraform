@@ -1,0 +1,10 @@
+[Unit]
+Description=hackathon
+
+[Service]
+ExecStart=/hackathon/helloworld
+WorkingDirectory=/hackathon
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
