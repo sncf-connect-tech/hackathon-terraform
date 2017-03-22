@@ -11,15 +11,10 @@ exec > >(tee -a $LOGFILE)
 exec 2>&1
 
 mkdir -p /home/admsys/.ssh
-useradd admsys
+useradd -s /bin/bash admsys
 cp -r /home/ubuntu/.ssh/* /home/admsys/.ssh/
 cp -r /home/ubuntu/.bashrc /home/admsys/
 cp -r /home/ubuntu/.profile /home/admsys/
 chmod 644 /home/admsys/.ssh/authorized_keys
-apt-get install ansible -y
-mv /etc/ansible /etc/ansible.orig
-apt-get install git -y 
-mkdir -p /appl/git/
-cd /appl/git/
-git clone https://github.com/voyages-sncf-technologies/hackathon-terraform.git
-ln -s /appl/git/hackathon-terraform/application/ansible /etc/ansible
+apt-get -q update
+apt-get -qy install python
