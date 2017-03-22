@@ -16,7 +16,13 @@ func ping(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	port := "8080"
+	if (len(os.Args) > 1) {
+		port = os.Args[1]
+	}
+	fmt.Printf("listen to %s\n", port)
 	http.HandleFunc("/ping", ping)
 	http.HandleFunc("/", index)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(fmt.Sprintf(":%s", port), nil)
+	fmt.Println("server started")
 }
