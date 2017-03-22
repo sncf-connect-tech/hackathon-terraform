@@ -20,7 +20,7 @@ resource "aws_instance" "apache" {
 }
 
 resource "aws_instance" "tomcat" {
-  ami = "ami-f4e454e2"
+  ami = "ami-66eb5b70"
 
   #ami           = "ami-f4cc1de2"
   instance_type     = "m3.medium"
