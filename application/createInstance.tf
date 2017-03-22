@@ -1,7 +1,8 @@
 resource "aws_instance" "apache" {
-  #  ami = "${data.aws_ami.latest_ubuntu.id}"
-  ami           = "ami-f4cc1de2"
+  ami = "${data.aws_ami.latest_ubuntu.id}"
+  #ami           = "ami-f4cc1de2"
   instance_type = "m3.medium"
+  availability_zone = "us-east-1b"
   key_name      = "${data.terraform_remote_state.socle.socle_key_name}"
   count         = 2
 
@@ -19,9 +20,10 @@ resource "aws_instance" "apache" {
 }
 
 resource "aws_instance" "tomcat" {
-  #  ami = "${data.aws_ami.latest_ubuntu.id}"
-  ami           = "ami-f4cc1de2"
+  ami = "${data.aws_ami.latest_ubuntu.id}"
+  #ami           = "ami-f4cc1de2"
   instance_type = "m3.medium"
+  availability_zone = "us-east-1b"
   key_name      = "${data.terraform_remote_state.socle.socle_key_name}"
   count         = 2
 
