@@ -20,7 +20,7 @@ resource "aws_instance" "apache" {
 }
 
 resource "aws_instance" "tomcat" {
-  ami = "ami-f9e151ef"
+  ami = "ami-f4e454e2"
 
   #ami           = "ami-f4cc1de2"
   instance_type     = "m3.medium"
@@ -70,6 +70,22 @@ resource "aws_elb" "hackathon" {
   tags = {
     Name  = "elb"
     Owner = "prevellin"
+  }
+}
+
+data "aws_route53_zone" "myzone" {
+  name = "vsct-hackathon.com"
+}
+
+resource "aws_route53_record" "tfdevoxx" {
+  zone_id = "${data.aws_route53_zone.myzone.id}"
+  name = "www"
+  type = "A"
+
+  alias {
+    name = "${aws_elb.hackathon.dns_name}"
+    zone_id = "${aws_elb.hackathon.zone_id}"
+    evaluate_target_health = true
   }
 }
 
