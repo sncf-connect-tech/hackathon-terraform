@@ -6,6 +6,8 @@ resource "aws_subnet" "sas_securite" {
     Name  = "Subnet sas securite"
     Owner = "Daniel Polombo"
   }
+
+  availability_zone = "${var.default_az}"
 }
 
 resource "aws_subnet" "zone_appli" {
@@ -16,6 +18,8 @@ resource "aws_subnet" "zone_appli" {
     Name  = "Subnet zone applicative"
     Owner = "Daniel Polombo"
   }
+
+  availability_zone = "${var.default_az}"
 }
 
 resource "aws_subnet" "zone_sgbd" {
@@ -26,6 +30,8 @@ resource "aws_subnet" "zone_sgbd" {
     Name  = "Subnet zone SGBD"
     Owner = "Daniel Polombo"
   }
+
+  availability_zone = "${var.default_az}"
 }
 
 resource "aws_subnet" "zone_transverse" {
@@ -36,6 +42,8 @@ resource "aws_subnet" "zone_transverse" {
     Name  = "Subnet zone transverse"
     Owner = "Daniel Polombo"
   }
+
+  availability_zone = "${var.default_az}"
 }
 
 output "socle_subnet_zone_appli_id" {

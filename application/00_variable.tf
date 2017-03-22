@@ -5,3 +5,7 @@ variable "region" {
 variable ansiblePublicSsh {
   default = "file://ansible.public.ssh"
 }
+
+variable "default_az" {
+  default = "us-east-1b"
+}
