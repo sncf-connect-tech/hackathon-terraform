@@ -1,0 +1,15 @@
+# Connexion directe avec le bastion.
+# Pensez à adapter le User et le IdentityFile selon vos besoins.
+Host bastion  
+ Hostname bastion.vsct-hackathon.com
+ User ubuntu
+ IdentityFile socle/ssh/idrsa
+
+# Pour toutes les machines de la zone privée :
+# Vous pouvez renseigner un range d’IPs ou une zone dns, exemple:
+#    *.eu-west-1.compute.amazonaws.com
+Host 10.* 
+# Proxifier la connexion au travers du bastion.
+ ProxyCommand ssh -F ssh_config -W %h:%p bastion
+ IdentityFile socle/ssh/idrsa
+ User ubuntu
