@@ -7,22 +7,22 @@ node{
             git 'https://github.com/voyages-sncf-technologies/hackathon-terraform.git'
 
             stage("init"){
-                  sh 'cd application; terraform init'
+                  sh 'cd socle; terraform init'
             }
 
             stage("plan"){
-                 sh 'cd application; terraform plan'
+                 sh 'cd socle; terraform plan'
             }
 
             stage("apply"){
                 //timeout(time: 1, unit: 'HOURS') {
                 //    input 'Apply?'
-                    sh 'cd application; terraform apply'
+                    sh 'cd socle; terraform apply'
                 //}
             }
 
             stage("report"){
-              sh 'cd application;terraform show'
+              sh 'cd socle;terraform show'
             }
         }
     }
