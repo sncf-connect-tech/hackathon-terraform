@@ -13,6 +13,8 @@ exec 2>&1
 mkdir -p /home/admsys/.ssh
 useradd admsys
 cp -r /home/ubuntu/.ssh/* /home/admsys/.ssh/
+cp -r /home/ubuntu/.bashrc /home/admsys/
+cp -r /home/ubuntu/.profile /home/admsys/
 chmod 644 /home/admsys/.ssh/authorized_keys
 apt-get install ansible -y
 mv /etc/ansible /etc/ansible.orig
