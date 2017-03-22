@@ -14,6 +14,10 @@ node{
                   sh 'pwd; cd helloworld;  tar czvf helloworld.tar.gz index.html img/hackathon.png helloworld'
             }
 
+            stage("archive"){
+                archive includes: 'helloworld/*.tar.gz'
+            }
+
             stage("report"){
               sh 'cd helloworld;ls -l'
             }
