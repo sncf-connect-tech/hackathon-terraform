@@ -14,3 +14,4 @@ mkdir -p /home/admsys/.ssh
 useradd admsys
 cp -r /home/ubuntu/.ssh/* /home/admsys/.ssh/
 chmod 644 /home/admsys/.ssh/authorized_keys
+apt-get install ansible -y
