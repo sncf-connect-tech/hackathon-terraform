@@ -7,7 +7,7 @@ node{
             git 'https://github.com/voyages-sncf-technologies/hackathon-terraform.git'
 
             stage("build"){
-                  sh 'pwd; cd helloworld; GOPATH=$PWD go build helloworld.go;'
+                  sh 'pwd; cd helloworld; GOARCH=386 GOOS=linux GOPATH=$PWD go build helloworld.go;'
             }
 
             stage("package"){
