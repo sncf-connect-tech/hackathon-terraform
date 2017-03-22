@@ -22,6 +22,18 @@ resource "aws_route_table_association" "routing_zone_transverse" {
   subnet_id      = "${aws_subnet.zone_transverse.id}"
 }
 
+//Passerelle SNAT
+
+resource "aws_eip" "nat" {
+  vpc = "true"
+}
+
+
+/* Nat gateway for private resource */
+resource "aws_nat_gateway" "gw" {
+  allocation_id = "${aws_eip.nat.id}"
+  subnet_id     = "${aws_subnet.sas_securite.id}"
+}
 
 /* Routing table for private subnet */
 resource "aws_route_table" "private" {
