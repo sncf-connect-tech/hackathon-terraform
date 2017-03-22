@@ -1,0 +1,19 @@
+node{
+      docker.image('golang:1.7.3-alpine').inside {
+
+         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'AWS',
+                            usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]){
+
+            git 'https://github.com/voyages-sncf-technologies/hackathon-terraform.git/helloworld'
+
+            stage("build"){
+                  sh 'pwd; GOPATH=$PWD go build helloworld.go;'
+            }
+
+            stage("report"){
+              sh 'cd helloworld;ls -l'
+            }
+        }
+    }
+}
+
