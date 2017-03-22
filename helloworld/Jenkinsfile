@@ -4,10 +4,10 @@ node{
          withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'AWS',
                             usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]){
 
-            git 'https://github.com/voyages-sncf-technologies/hackathon-terraform.git/helloworld'
+            git 'https://github.com/voyages-sncf-technologies/hackathon-terraform.git'
 
             stage("build"){
-                  sh 'pwd; GOPATH=$PWD go build helloworld.go;'
+                  sh 'pwd; cd helloworld; GOPATH=$PWD go build helloworld.go;'
             }
 
             stage("report"){
